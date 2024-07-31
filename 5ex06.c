@@ -3,16 +3,21 @@
 
 int main(){
     int a[30], b[30], x;
-    printf ("Digite 30 valores \n");
+    printf ("Digite 30 valores para ver o cubo \n");
     for (x=0;x<30;x++){
         scanf ("%i", &a[x]);
     }
     for (x=0;x<30;x++){
         b[x]= a[x]*a[x]*a[x];
     }
-    printf ("Esses são os 30 valores ao cubo \n");
-    for (x=0;x<30;x++){
-        printf ("%i ", b[x]);
+    printf ("\nDigite qual elemento quer encontrar, e para sair digite um numero negativo \n");
+    while (x>0){
+        scanf ("%i", &x);
+        x=x-1;
+        if (x<0){
+            break;
+        }
+        printf ("%i\n", b[x]);
     }
     return 0;
 }
