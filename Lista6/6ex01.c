@@ -3,11 +3,13 @@
 
 int main(){
     int a[5][3], b[5][3], c[5][3], x, y;
+    printf ("Coloque 15 valores para matriz A 5 por 3");
     for (x=0;x<5;x++){
         for (y=0;y<3;y++){
         scanf ("%i",&a[x][y]);
         }
     }
+    printf ("Coloque 15 valores para matriz B 5 por 3");
     for (x=0;x<5;x++){
         for (y=0;y<3;y++){
         scanf ("%i",&b[x][y]);
