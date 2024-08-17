@@ -23,7 +23,7 @@ void cadastro (char nome[40], char idade[10], char endereco[100], char telefone[
 void alfabetica (int quantidadec, struct pessoas cadastros[5]){
     int x, y;
     struct pessoas z;
-    for (x=0;x<quantidadec-1;x++){
+    for (x=1;x<quantidadec-1;x++){
         for (y=x+1;y<quantidadec;y++){
             if (strcmp(cadastros[x].nome,cadastros[y].nome)>0){
                 z=cadastros[x];
@@ -36,12 +36,14 @@ void alfabetica (int quantidadec, struct pessoas cadastros[5]){
 
 int main (){
     int tarefa=0, quantidadep=-1, quantidadec=0, qntc, alterar=1;
+    char idade[10];
     struct pessoas cadastros[5];
     while (tarefa!=5){
         printf ("Digite um numero para realizar as tarefas: \n1- Cadastro de informacoes \n2- Pesquisa por idade \n3- Classificacao por ordem alfabetica \n4- Alterar dados \n5- Encerrar o programa\n");
         scanf ("%i", &tarefa);
         switch (tarefa){
             case 1:
+                quantidadep=0;
                 while(quantidadep<=quantidadec){
                     quantidadep++;
                 }
@@ -49,10 +51,16 @@ int main (){
                 quantidadec++;
                 break;
             case 2:
-                printf ("Digite a idade a ser procurada");
+                printf ("Digite a idade a ser procurada\n");
+                fgets(idade, 10, stdin);
+                for(qntc = 0; qntc < quantidadec; qntc++){
+                    if (strcmp(idade, cadastros[qntc].idade) == 0){
+                        printf ("Nome: %s \nIdade: %s\nEndereço: %s \nTelefone:%s \n\n", cadastros[qntc].nome, cadastros[qntc].idade, cadastros[qntc].endereco, cadastros[qntc].telefone);
+                    }
+                }
                 break;
             case 3: alfabetica(quantidadec,cadastros);
-                for (qntc=1;qntc<=quantidadec;qntc++){
+                for (qntc=0;qntc<=quantidadec;qntc++){
                     printf ("Nome:%s\n Idade:%s\n Endereco:%s\n Telefone:%s\n",cadastros[qntc].nome,cadastros[qntc].idade,cadastros[qntc].endereco,cadastros[qntc].telefone);
                 }
                 break;
@@ -85,16 +93,16 @@ int main (){
                             break;
                         }
                         switch (alterar) {
-                            case 1: printf ("Reescreva o nome");
+                            case 1: printf ("Reescreva o nome:\n");
                                 fgets(cadastros[qntc].nome, 40, stdin);
                                 break;
-                            case 2 : printf ("Reescreva a idade");
+                            case 2 : printf ("Reescreva a idade:\n");
                                 fgets(cadastros[qntc].idade, 10, stdin);
                                 break;
-                            case 3:
+                            case 3: printf ("Reescreva o endereco:\n");
                                 fgets(cadastros[qntc].endereco, 100, stdin);
                                 break;
-                            case 4:
+                            case 4: printf ("Reescreva o telefone:\n");
                                 fgets(cadastros[qntc].telefone, 20, stdin);
                                 break;
                             case 5: 
