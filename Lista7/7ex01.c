@@ -35,7 +35,7 @@ void alfabetica (int quantidadec, struct pessoas cadastros[5]){
 }
 
 int main (){
-    int tarefa=0, quantidadep=-1, quantidadec=0, qntc;
+    int tarefa=0, quantidadep=-1, quantidadec=0, qntc, alterar=1;
     struct pessoas cadastros[5];
     while (tarefa!=5){
         printf ("Digite um numero para realizar as tarefas: \n1- Cadastro de informacoes \n2- Pesquisa por idade \n3- Classificacao por ordem alfabetica \n4- Alterar dados \n5- Encerrar o programa\n");
@@ -47,16 +47,65 @@ int main (){
                 }
                 cadastro (cadastros[quantidadep].nome,cadastros[quantidadep].idade,cadastros[quantidadep].endereco,cadastros[quantidadep].telefone);
                 quantidadec++;
+                break;
             case 2:
+                printf ("Digite a idade a ser procurada");
                 break;
             case 3: alfabetica(quantidadec,cadastros);
                 for (qntc=1;qntc<=quantidadec;qntc++){
                     printf ("Nome:%s\n Idade:%s\n Endereco:%s\n Telefone:%s\n",cadastros[qntc].nome,cadastros[qntc].idade,cadastros[qntc].endereco,cadastros[qntc].telefone);
                 }
-            case 4:
                 break;
+            case 4:
+                qntc=1; 
+                while(qntc!=6){
+                    quantidadep=1;
+                    alterar=1;
+                    printf ("Digite o numero cadastro a ser corrigido\n");
+                    while (quantidadec>=quantidadep){
+                        printf ("%i- %s\n", quantidadep, cadastros[quantidadep].nome);
+                        quantidadep++;
+                    }
+                    printf ("6-Para voltar\n");
+                    scanf ("%i", &qntc);
+                    if (qntc<=0 || qntc>=7){
+                        printf ("\nTente novamente\n\n");
+                    }
+                    if (qntc==6){
+                        break;
+                    }
+                    while(qntc>0 && qntc<7 && alterar!=5){
+                        printf ("Digite o numero correspondente ao dado que precisa ser corrigido: \n1-Nome \n2-Idade \n3-Endereco \n4-Telefone \n5-Voltar\n");
+                        scanf ("%i", &alterar);
+                        fflush(stdin);
+                        if (alterar<0 || alterar>6){
+                            printf ("\nTente novamente\n\n");
+                        }
+                        if (alterar==5){
+                            break;
+                        }
+                        switch (alterar) {
+                            case 1: printf ("Reescreva o nome");
+                                fgets(cadastros[qntc].nome, 40, stdin);
+                                break;
+                            case 2 : printf ("Reescreva a idade");
+                                fgets(cadastros[qntc].idade, 10, stdin);
+                                break;
+                            case 3:
+                                fgets(cadastros[qntc].endereco, 100, stdin);
+                                break;
+                            case 4:
+                                fgets(cadastros[qntc].telefone, 20, stdin);
+                                break;
+                            case 5: 
+                                break;
+                        }
+                        break;
+                    }
+                }   
             case 5:
                 break;
+            break;
         }
     }
     return 0;
