@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <string.h>
+#include <stdlib.h>
 struct pessoas{
     char nome [40];
     char idade[10];
@@ -13,7 +14,7 @@ void cadastro (char nome[40], char idade[10], char endereco[100], char telefone[
     printf ("Digite o nome para o cadastro\n");
     fgets(nome, 40, stdin);
     printf ("Digite a idade da pessoa\n");
-    fgets(idade, 10, stdin);
+    scanf ("%s",idade);
     printf ("Digite o endereco onde essa pessoa mora\n");
     fgets(endereco, 100, stdin);
     printf ("Digite o telefone\n");
@@ -35,7 +36,7 @@ void alfabetica (int quantidadec, struct pessoas cadastros[5]){
 }
 
 int main (){
-    int tarefa=0, quantidadep=-1, quantidadec=0, qntc, alterar=1;
+    int tarefa=0, quantidadep=-1, quantidadec=0, qntc, alterar=1, x;
     char idade[10];
     struct pessoas cadastros[5];
     while (tarefa!=5){
@@ -52,12 +53,19 @@ int main (){
                 break;
             case 2:
                 printf ("Digite a idade a ser procurada\n");
-                fgets(idade, 10, stdin);
-                for(qntc = 0; qntc < quantidadec; qntc++){
-                    if (strcmp(idade, cadastros[qntc].idade) == 0){
-                        printf ("Nome: %s \nIdade: %s\nEndereço: %s \nTelefone:%s \n\n", cadastros[qntc].nome, cadastros[qntc].idade, cadastros[qntc].endereco, cadastros[qntc].telefone);
+                scanf ("%s",idade);
+                x=1;
+                    while (1){
+                        printf ("Entrou while\n");
+                        printf ("idade %s, cadastro %s\n", idade, cadastros[x].idade);
+                        if (strcmp(cadastros[x].idade, idade) != 0) {
+                            printf("Nome: %s \nIdade: %s\nEndereco: %s \nTelefone:%s \n\n", cadastros[x].nome, cadastros[x].idade, cadastros[x].endereco, cadastros[x].telefone);
+                        }
+                        if (x==quantidadec){
+                            break;
+                        }
+                        x++;
                     }
-                }
                 break;
             case 3: alfabetica(quantidadec,cadastros);
                 for (qntc=0;qntc<=quantidadec;qntc++){
@@ -115,6 +123,7 @@ int main (){
                 break;
             break;
         }
+    system("CLS");
     }
     return 0;
-}
+} 
