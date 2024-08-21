@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <string.h>
+#include <stdlib.h>
 struct pessoas{
     char nome [40];
     char idade[10];
@@ -13,7 +14,8 @@ void cadastro (char nome[40], char idade[10], char endereco[100], char telefone[
     printf ("Digite o nome para o cadastro\n");
     fgets(nome, 40, stdin);
     printf ("Digite a idade da pessoa\n");
-    fgets(idade, 10, stdin);
+    scanf ("%s",idade);
+    getchar();
     printf ("Digite o endereco onde essa pessoa mora\n");
     fgets(endereco, 100, stdin);
     printf ("Digite o telefone\n");
@@ -35,9 +37,10 @@ void alfabetica (int quantidadec, struct pessoas cadastros[5]){
 }
 
 int main (){
-    int tarefa=0, quantidadep=-1, quantidadec=0, qntc, alterar=1;
+    int tarefa=0, quantidadep=-1, quantidadec=0, qntc, alterar=1, x;
     char idade[10];
     struct pessoas cadastros[5];
+    system("CLS");
     while (tarefa!=5){
         printf ("Digite um numero para realizar as tarefas: \n1- Cadastro de informacoes \n2- Pesquisa por idade \n3- Classificacao por ordem alfabetica \n4- Alterar dados \n5- Encerrar o programa\n");
         scanf ("%i", &tarefa);
@@ -49,19 +52,25 @@ int main (){
                 }
                 cadastro (cadastros[quantidadep].nome,cadastros[quantidadep].idade,cadastros[quantidadep].endereco,cadastros[quantidadep].telefone);
                 quantidadec++;
+                system("CLS");
                 break;
             case 2:
                 printf ("Digite a idade a ser procurada\n");
-                fgets(idade, 10, stdin);
-                for(qntc = 0; qntc < quantidadec; qntc++){
-                    if (strcmp(idade, cadastros[qntc].idade) == 0){
-                        printf ("Nome: %s \nIdade: %s\nEndereço: %s \nTelefone:%s \n\n", cadastros[qntc].nome, cadastros[qntc].idade, cadastros[qntc].endereco, cadastros[qntc].telefone);
+                scanf ("%s",idade);
+                x=1;
+                    while (1){
+                        if (strcmp(cadastros[x].idade, idade) == 0) {
+                            printf("\nNome: %s Idade: %s\nEndereco: %s Telefone:%s \n\n", cadastros[x].nome, cadastros[x].idade, cadastros[x].endereco, cadastros[x].telefone);
+                        }
+                        if (x==quantidadec){
+                            break;
+                        }
+                        x++;
                     }
-                }
                 break;
             case 3: alfabetica(quantidadec,cadastros);
-                for (qntc=0;qntc<=quantidadec;qntc++){
-                    printf ("Nome:%s\n Idade:%s\n Endereco:%s\n Telefone:%s\n",cadastros[qntc].nome,cadastros[qntc].idade,cadastros[qntc].endereco,cadastros[qntc].telefone);
+                for (qntc=1;qntc<=quantidadec;qntc++){
+                    printf ("Nome:%s Idade:%s \nEndereco:%s Telefone:%s",cadastros[qntc].nome,cadastros[qntc].idade,cadastros[qntc].endereco,cadastros[qntc].telefone);
                 }
                 break;
             case 4:
@@ -69,7 +78,7 @@ int main (){
                 while(qntc!=6){
                     quantidadep=1;
                     alterar=1;
-                    printf ("Digite o numero cadastro a ser corrigido\n");
+                    printf ("Digite o numero do cadastro a ser corrigido\n");
                     while (quantidadec>=quantidadep){
                         printf ("%i- %s\n", quantidadep, cadastros[quantidadep].nome);
                         quantidadep++;
@@ -108,13 +117,17 @@ int main (){
                             case 5: 
                                 break;
                         }
+                        
                         break;
                     }
+                system("CLS");
                 }   
             case 5:
                 break;
+            default:
+                printf("Coloque um valor valido");
             break;
         }
     }
     return 0;
-}
+} 
