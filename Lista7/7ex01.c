@@ -60,7 +60,7 @@ int main (){
                 x=1;
                     while (1){
                         if (strcmp(cadastros[x].idade, idade) == 0) {
-                            printf("\nNome: %s \nIdade: %s\n\nEndereco: %s \nTelefone:%s \n\n", cadastros[x].nome, cadastros[x].idade, cadastros[x].endereco, cadastros[x].telefone);
+                            printf("\nNome: %s Idade: %s\nEndereco: %s Telefone:%s \n\n", cadastros[x].nome, cadastros[x].idade, cadastros[x].endereco, cadastros[x].telefone);
                         }
                         if (x==quantidadec){
                             break;
@@ -70,7 +70,7 @@ int main (){
                 break;
             case 3: alfabetica(quantidadec,cadastros);
                 for (qntc=1;qntc<=quantidadec;qntc++){
-                    printf ("Nome:%s\n Idade:%s\n Endereco:%s\n Telefone:%s\n",cadastros[qntc].nome,cadastros[qntc].idade,cadastros[qntc].endereco,cadastros[qntc].telefone);
+                    printf ("Nome:%s Idade:%s \nEndereco:%s Telefone:%s",cadastros[qntc].nome,cadastros[qntc].idade,cadastros[qntc].endereco,cadastros[qntc].telefone);
                 }
                 break;
             case 4:
